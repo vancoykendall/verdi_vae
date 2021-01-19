@@ -125,6 +125,7 @@ class Trainer():
                       disable=not self.is_progress_bar)
         with trange(len(data_loader), **kwargs) as t:
             for _, (data, _) in enumerate(data_loader):
+                print()
                 iter_loss = self._train_iteration(data, storer)
                 epoch_loss += iter_loss
 

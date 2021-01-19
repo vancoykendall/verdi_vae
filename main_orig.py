@@ -25,7 +25,6 @@ EXPERIMENTS = ADDITIONAL_EXP + ["{}_{}".format(loss, data)
                                 for data in DATASETS]
 
 
-
 def parse_arguments(args_to_parse):
     """Parse the command line arguments.
 
