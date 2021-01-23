@@ -22,7 +22,9 @@ DATASETS_DICT = {"mnist": "MNIST",
                  "fashion": "FashionMNIST",
                  "dsprites": "DSprites",
                  "celeba": "CelebA",
-                 "chairs": "Chairs"}
+                 "chairs": "Chairs",
+                 "cardamagesmall": "CarDamageSmall",
+                 "cardamagemedium": "CarDamageMedium"}
 DATASETS = list(DATASETS_DICT.keys())
 
 
@@ -381,6 +383,48 @@ class FashionMNIST(datasets.FashionMNIST):
                          ]))
 
 
+        
+# Custom Dataset (Author: Van)
+class CarDamageSmall(datasets.ImageFolder):
+    
+    img_size = (3, 64, 64)
+    background_color = COLOUR_WHITE
+    
+    def __init__(self, root=os.path.join(DIR, "../data/car_damage_64"),
+                 logger=logging.getLogger(__name__),
+                 transform=[transforms.ToTensor()]):
+        self.root = root
+        assert os.path.isdir(root)  
+        self.transforms = transform
+        self.logger = logger
+        super().__init__(root=root,
+                         transform=transforms.Compose(self.transform))
+                 
+    def __getitem__(self, idx):
+        sample = super().__getitem__(idx)
+        return sample[0], 0
+    
+# Custom Dataset (Author: Van)
+class CarDamageMedium(datasets.ImageFolder):
+    
+    img_size = (3, 128, 128)
+    background_color = COLOUR_WHITE
+    
+    def __init__(self, root=os.path.join(DIR, "../data/car_damage_128"),
+                 logger=logging.getLogger(__name__)):
+        self.root = root
+        assert os.path.isdir(root)  
+        self.transforms = transforms.Compose([transforms.ToTensor()])
+        self.logger = logger
+        super().__init__(root=root,
+                         transform=self.transforms)
+                 
+    def __getitem__(self, idx):
+        sample = super().__getitem__(idx)
+        return sample[0], 0
+                 
+        
+        
 # HELPERS
 def preprocess(root, size=(64, 64), img_format='JPEG', center_crop=None):
     """Preprocess a folder of images.
