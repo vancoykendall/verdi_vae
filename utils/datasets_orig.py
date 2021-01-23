@@ -22,8 +22,7 @@ DATASETS_DICT = {"mnist": "MNIST",
                  "fashion": "FashionMNIST",
                  "dsprites": "DSprites",
                  "celeba": "CelebA",
-                 "chairs": "Chairs",
-                 "custom": "Custom"}
+                 "chairs": "Chairs"}
 DATASETS = list(DATASETS_DICT.keys())
 
 
