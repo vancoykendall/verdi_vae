@@ -23,6 +23,10 @@ ADDITIONAL_EXP = ['custom', "debug", "best_celeba", "best_dsprites"]
 EXPERIMENTS = ADDITIONAL_EXP + ["{}_{}".format(loss, data)
                                 for loss in LOSSES
                                 for data in DATASETS]
+# Batch Job Constants
+MODELS_PER_TASK = 2
+LATENT_START = 6
+LATENT_STEP = 2
 
 
 
@@ -142,6 +146,13 @@ def parse_arguments(args_to_parse):
     evaluation.add_argument('--eval-batchsize', type=int,
                             default=default_config['eval_batchsize'],
                             help='Batch size for evaluation.')
+    
+    # Scheduler options
+    scheduler = parser.add_argument_group("Scheduler options for batch jobs")
+    scheduler.add_argument('--task-id', type=int,
+                           help="ID of the task in the job array")
+    scheduler.add_argument('--task-count', type=int,
+                           help="Number of tasks for the job array")
 
     args = parser.parse_args(args_to_parse)
     if args.experiment != 'custom':
@@ -159,7 +170,7 @@ def parse_arguments(args_to_parse):
         except KeyError as e:
             if args.experiment in ADDITIONAL_EXP:
                 raise e  # only reraise if didn't use common section
-
+                
     return args
 
 
@@ -250,4 +261,7 @@ def main(args):
 
 if __name__ == '__main__':
     args = parse_arguments(sys.argv[1:])
+    if not (args.task_id is None):
+        for i in range(MODELS_PER_TASK):
+            args.latent_dim = LATENT_START + ((args.task_id-1) * LATENT_STEP * MODELS_PER_TASK) + (i * LATENT_STEP) 
     main(args)
