@@ -1,5 +1,4 @@
 #!/bin/bash
-echo test0
 #SBATCH -o job_logs/train_script.sh.log-%j-%a 
 #SBATCH --gres=gpu:volta:1
 #SBATCH -c 5

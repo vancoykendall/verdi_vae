@@ -43,3 +43,4 @@ __pycache__/
 !train_script.sh
 test_stuff.py
 !data/car_damage_128
+results/**/training.gif
