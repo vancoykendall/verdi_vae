@@ -40,3 +40,5 @@ __pycache__/
 
 # placeholders to keep directories
 !.keep
+!train_script.sh
+test_stuff.py
