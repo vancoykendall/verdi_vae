@@ -42,3 +42,4 @@ __pycache__/
 !.keep
 !train_script.sh
 test_stuff.py
+!data/car_damage_128
