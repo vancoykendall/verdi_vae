@@ -263,5 +263,6 @@ if __name__ == '__main__':
     args = parse_arguments(sys.argv[1:])
     if not (args.task_id is None):
         for i in range(MODELS_PER_TASK):
-            args.latent_dim = LATENT_START + ((args.task_id-1) * LATENT_STEP * MODELS_PER_TASK) + (i * LATENT_STEP) 
-    main(args)
+            args.latent_dim = LATENT_START + ((args.task_id-1) * LATENT_STEP * MODELS_PER_TASK) + (i * LATENT_STEP)
+            args.name += "_z{}".format(args.latent_dim)
+            main(args)

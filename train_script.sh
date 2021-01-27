@@ -14,4 +14,4 @@ echo "My SLURM_ARRAY_TASK_ID: " $SLURM_ARRAY_TASK_ID
 echo "Number of Tasks: " $SLURM_ARRAY_TASK_COUNT
 
 # Run script
-python main.py btcvae_cardamage_128_$SLURM_ARRAY_TASK_ID -d cardamagemedium -b 64 -l btcvae --lr 0.001 -e 200 --checkpoint-every 10 --task-id $SLURM_ARRAY_TASK_ID --task-count $SLURM_ARRAY_TASK_COUNT
+python main.py btcvae_cardamage_128 -d cardamagemedium -b 64 -l btcvae --lr 0.001 -e 200 --checkpoint-every 10 --task-id $SLURM_ARRAY_TASK_ID --task-count $SLURM_ARRAY_TASK_COUNT
