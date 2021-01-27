@@ -7,7 +7,7 @@
     "btcvae_A": 1,
     "btcvae_B": 6,
     "btcvae_G": 1,
-    "checkpoint_every": 20,
+    "checkpoint_every": 10,
     "dataset": "cardamagemedium",
     "epochs": 200,
     "eval_batchsize": 1000,
@@ -33,6 +33,6 @@
     "rec_dist": "bernoulli",
     "reg_anneal": 10000,
     "seed": 1234,
-    "task_count": null,
-    "task_id": null
+    "task_count": 4,
+    "task_id": 2
 }
